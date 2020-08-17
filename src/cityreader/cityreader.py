@@ -27,14 +27,28 @@ def cityreader(cities=[]):
   # Ensure that the lat and lon valuse are all floats
   # For each city record, create a new City instance and add it to the 
   # `cities` list
-    
+  with open("cities.csv", newline='') as cityData:
+    reader = csv.reader(cityData)
+
+    next(reader)
+
+    for data in reader:
+      # name, lat and lon as defined in the csv on line 1 
+      # and using the City class defined above
+      city = City(data[0], float(data[3]), float(data[4]))
+      cities.append(city)
+
+
     return cities
 
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
-    print(c)
+  name = c.name
+  lat = c.lat
+  lon = c.lon
+  print(name, lat, lon)
 
 # STRETCH GOAL!
 #
